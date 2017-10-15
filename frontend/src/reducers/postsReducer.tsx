@@ -11,37 +11,40 @@ import {
 interface PostBody {
     postDetails : any;
     type : string;
-    data : Object;
+    data : any;
+    id : any;
 }
 // reducers take the previous state and the action as args then returns the new
-// state never mutate state. Just make a copy and return the copy
-export default function posts(prevState : Object = {}, action : PostBody) {
-    const {postDetails, data} = action;
+// state. never mutate state. Just make a copy and return the copy. please note
+// that concat() is a non-mutating method
+export default function posts(prevState : any = [], action : PostBody) {
+    const {postDetails, id, data} = action;
 
     switch (action.type) {
         case ADD_POST:
-            return {
-                ...prevState,
-                [postDetails.id]: postDetails
-            };
+            return prevState.concat([postDetails]);
         case DELETE_POST:
-            return {
-                ...prevState,
-                data
-            };
+            return prevState.filter((post : any) => post.id !== id);
         case EDIT_POST:
-            return {prevState};
+            return prevState.map((eachPost : any) => {
+                if (eachPost.id === id) {
+                    eachPost = data;
+                }
+                return eachPost;
+            });
         case VOTE_POST:
-            return {prevState};
+            return prevState.map((eachPost : any) => {
+                if (eachPost.id === id) {
+                    eachPost = data;
+                }
+                return eachPost;
+            });
         case GET_SINGLE_POST:
-            return {prevState};
+            return data;
         case GET_POSTS:
-            return {
-                ...prevState,
-                data
-            };
+            return data;
         case GET_POSTS_IN_CATEGORY:
-            return {prevState};
+            return data;
         default:
             return prevState;
     }

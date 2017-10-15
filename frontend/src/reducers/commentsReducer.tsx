@@ -8,29 +8,32 @@ import {
 } from '../actions/commentsAction';
 
 interface CommentBody {
-    comment : Object;
     type : string;
+    commentDetails : any;
+    data : any;
+    id : any;
 }
 
-export default function posts(prevState : Object = {}, action : CommentBody) {
-    const {comment} = action;
+export default function posts(prevState : any = [], action : CommentBody) {
+    const {commentDetails, data, id} = action;
 
     switch (action.type) {
         case ADD_COMMENT:
-            return {
-                ...prevState,
-                comment
-            };
+            // the only issue with this is if the previous state contains a bunch of
+            // comments that are in another post, it will concat those comments with these
+            // ones, but it shouldn't be an issue because we don't want to show comments
+            // unless we're on the post page
+            return prevState.concat([commentDetails]);
         case DELETE_COMMENT:
-            return {prevState};
+            return prevState.filter((eachPost : any) => eachPost.id !== id);
         case EDIT_COMMENT:
-            return {prevState};
+            return prevState;
         case VOTE_COMMENT:
-            return {prevState};
+            return prevState;
         case GET_COMMENT:
-            return {prevState};
+            return prevState;
         case GET_COMMENTS_FOR_POST:
-            return {prevState};
+            return data;
         default:
             return prevState;
     }

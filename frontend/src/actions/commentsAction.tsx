@@ -1,4 +1,4 @@
-// import * as api from '../utils/api';
+import * as api from '../utils/api';
 
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
@@ -8,6 +8,28 @@ export const GET_COMMENT = 'GET_COMMENT';
 export const GET_COMMENTS_FOR_POST = 'GET_COMMENT_FOR_POSTS';
 
 // action creators
-export function addCommentToPost(commentDetails : Object) {
-    return {type: ADD_COMMENT, commentDetails};
+export function addComment(commentDetails : Object) {
+    return function (dispatch : any) {
+        return api
+            .addCommentToPost(commentDetails)
+            .then(() => dispatch({type: ADD_COMMENT, commentDetails}))
+            .catch((e : any) => `error: ${e}`);
+    };
+}
+export function getCommentsForPost(id : any) : any {
+    return function (dispatch : any) {
+        return api
+            .getCommentsForPost(id)
+            .then((data : any) => dispatch({type: GET_COMMENTS_FOR_POST, data}))
+            .catch((e : any) => `error: ${e}`);
+    };
+}
+
+export function deleteComment(id : any) : any {
+    return function (dispatch : any) {
+        return api
+            .deleteComment(id)
+            .then((data : any) => dispatch({type: DELETE_COMMENT, id}))
+            .catch((e : any) => `error: ${e}`);
+    };
 }

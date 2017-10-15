@@ -46,7 +46,7 @@ export const addPost = (newPost : Object) : any => {
 
 // get details of a single post
 export const getSinglePost = (id : string) : any => {
-    return fetch(`${api}/post/${id}`, {headers}).then(data => data.json());
+    return fetch(`${api}/posts/${id}`, {headers}).then(data => data.json());
 };
 
 // votes on a post. option needs to be either 'upVote' or 'downVote'
@@ -78,7 +78,7 @@ export const deletePost = (id : any) : any => {
 
 // gets all comments for one post
 export const getCommentsForPost = (id : string) : any => {
-    return fetch(`${api}/${id}/comments`, {headers}).then(data => data.json());
+    return fetch(`${api}/posts/${id}/comments`, {headers}).then(data => data.json());
 };
 
 // adds a comment to a post

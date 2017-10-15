@@ -5,16 +5,13 @@ interface CategoryBody {
     type : string;
 }
 
-export default function posts(state : Object = {}, action : CategoryBody) {
+export default function posts(prevState : any = [], action : CategoryBody) {
     const {data} = action;
 
     switch (action.type) {
         case GET_CATEGORIES:
-            return {
-                ...state,
-                data
-            };
+            return data;
         default:
-            return state;
+            return prevState;
     }
 }
