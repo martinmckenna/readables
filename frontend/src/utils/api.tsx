@@ -72,8 +72,8 @@ export const editPost = (id : string, newContent : Object) : any => {
     }).then(res => res.json());
 };
 
-export const deletePost = (id : string) : any => {
-    return fetch(`${api}/post/${id}`, {headers, method: 'DELETE'}).then(data => data.json());
+export const deletePost = (id : any) : any => {
+    return fetch(`${api}/posts/${id}`, {headers, method: 'DELETE'}).then(data => data.json());
 };
 
 // gets all comments for one post

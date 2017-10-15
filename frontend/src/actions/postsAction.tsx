@@ -11,7 +11,7 @@ export const GET_POSTS_IN_CATEGORY = 'GET_POSTS_IN_CATEGORY';
 // action creators
 export function addPost(postDetails : Object) {
     return function (dispatch : any) {
-        api
+        return api
             .addPost(postDetails)
             .then(() => dispatch({type: ADD_POST, postDetails}))
             .catch((e : any) => `error: ${e}`);
@@ -20,9 +20,20 @@ export function addPost(postDetails : Object) {
 
 export function getAllPosts() : any {
     return function (dispatch : any) {
-        api
+        return api
             .getAllPosts()
             .then((data : any) => dispatch({type: GET_POSTS, data}))
+            .catch((e : any) => `error: ${e}`);
+    };
+}
+
+export function deletePost(id : any) : any {
+    return function (dispatch : any) {
+        return api
+            .deletePost(id)
+            .then((data : Object) => dispatch({
+                type: DELETE_POST
+            }, data))
             .catch((e : any) => `error: ${e}`);
     };
 }

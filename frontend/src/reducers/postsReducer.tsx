@@ -25,7 +25,10 @@ export default function posts(prevState : Object = {}, action : PostBody) {
                 [postDetails.id]: postDetails
             };
         case DELETE_POST:
-            return {prevState};
+            return {
+                ...prevState,
+                data
+            };
         case EDIT_POST:
             return {prevState};
         case VOTE_POST:
