@@ -33,3 +33,12 @@ export function deleteComment(id : any) : any {
             .catch((e : any) => `error: ${e}`);
     };
 }
+
+export function editComment(id : any, newCommentDetails : Object) : any {
+    return function (dispatch : any) {
+        return api
+            .editComment(id, newCommentDetails)
+            .then((data : Object) => dispatch({type: EDIT_COMMENT, data, id}))
+            .catch((e : any) => `error: ${e}`);
+    };
+}

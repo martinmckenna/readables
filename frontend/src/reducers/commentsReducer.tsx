@@ -25,9 +25,14 @@ export default function posts(prevState : any = [], action : CommentBody) {
             // unless we're on the post page
             return prevState.concat([commentDetails]);
         case DELETE_COMMENT:
-            return prevState.filter((eachPost : any) => eachPost.id !== id);
+            return prevState.filter((eachComment : any) => eachComment.id !== id);
         case EDIT_COMMENT:
-            return prevState;
+            return prevState.map((eachComment : any) => {
+                if (eachComment.id === id) {
+                    eachComment = data;
+                }
+                return eachComment;
+            });
         case VOTE_COMMENT:
             return prevState;
         case GET_COMMENT:
