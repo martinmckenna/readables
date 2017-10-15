@@ -1,8 +1,13 @@
-// import * as api from '../utils/api';
+import * as api from '../utils/api';
 
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 
 // action creators
 export function getCategories() {
-    return {type: GET_CATEGORIES};
+    return function (dispatch : any) {
+        api
+            .getCategories()
+            .then((data : any) => dispatch({type: GET_CATEGORIES, data}))
+            .catch((e : any) => `error ${e}`);
+    };
 }

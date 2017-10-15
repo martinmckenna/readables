@@ -2,22 +2,19 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import reducer from './reducers/rootReducer';
 import {Provider} from 'react-redux';
-import {addPost} from './actions/postsAction';
+import {getAllPosts} from './actions/postsAction';
+import thunkMiddleware from 'redux-thunk';
+import {createLogger} from 'redux-logger';
 
-const store = createStore(reducer);
+const loggerMiddleware = createLogger();
 
-console.log(store.getState());
+const store = createStore(reducer, applyMiddleware(thunkMiddleware, loggerMiddleware));
+// const randNum = Math.random(); const date = Date.now();
 
-// Every time the state changes, log it Note that subscribe() returns a function
-// for unregistering the listener
-let unsubscribe = store.subscribe(() => console.log(store.getState()));
-
-store.dispatch(addPost({title: 'hello', body: 'hello world'}));
-
-unsubscribe();
+store.dispatch(getAllPosts());
 
 ReactDOM.render(
   <Provider store={store}><App/></Provider>, document.getElementById('root')as HTMLElement);

@@ -3,24 +3,26 @@ import {
     DELETE_POST,
     EDIT_POST,
     VOTE_POST,
+    GET_SINGLE_POST,
     GET_POSTS,
     GET_POSTS_IN_CATEGORY
 } from '../actions/postsAction';
 
 interface PostBody {
-    postDetails : Object;
+    postDetails : any;
     type : string;
+    data : Object;
 }
 // reducers take the previous state and the action as args then returns the new
 // state never mutate state. Just make a copy and return the copy
 export default function posts(prevState : Object = {}, action : PostBody) {
-    const {postDetails} = action;
+    const {postDetails, data} = action;
 
     switch (action.type) {
         case ADD_POST:
             return {
                 ...prevState,
-                post1: postDetails
+                [postDetails.id]: postDetails
             };
         case DELETE_POST:
             return {prevState};
@@ -28,8 +30,13 @@ export default function posts(prevState : Object = {}, action : PostBody) {
             return {prevState};
         case VOTE_POST:
             return {prevState};
-        case GET_POSTS:
+        case GET_SINGLE_POST:
             return {prevState};
+        case GET_POSTS:
+            return {
+                ...prevState,
+                data
+            };
         case GET_POSTS_IN_CATEGORY:
             return {prevState};
         default:

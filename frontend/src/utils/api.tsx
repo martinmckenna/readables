@@ -1,4 +1,4 @@
-const api : string = 'localhost:5001';
+const api : string = 'http://localhost:3001';
 
 let token = localStorage.token;
 if (!token) {
@@ -14,27 +14,27 @@ const headers : Object = {
 };
 
 // get all categories
-export const getCategories = () => {
+export const getCategories = () : any => {
     // so basically this is making a request to the endpoint then getting the
     // defaultData and then getting the categories object inside defaultData
-    fetch(`${api}/categories`, {headers})
+    return fetch(`${api}/categories`, {headers})
         .then(res => res.json())
         .then(data => data.categories);
 };
 
 // get all posts for a particular category
-export const getPostsInCategory = (category : string) => {
-    fetch(`${api}/${category}/posts`, {headers}).then(res => res.json());
+export const getPostsInCategory = (category : string) : any => {
+    return fetch(`${api}/${category}/posts`, {headers}).then(res => res.json());
 };
 
 // get all posts. period.
-export const getAllPosts = () => {
-    fetch(`${api}/posts`, {headers}).then(res => res.json());
+export const getAllPosts = () : any => {
+    return fetch(`${api}/posts`, {headers}).then(res => res.json());
 };
 
 // make a new post
-export const addPost = (newPost : Object) => {
-    fetch(`${api}/posts`, {
+export const addPost = (newPost : Object) : any => {
+    return fetch(`${api}/posts`, {
         headers: {
             ...headers,
             'Content-Type': 'application/json'
@@ -45,13 +45,13 @@ export const addPost = (newPost : Object) => {
 };
 
 // get details of a single post
-export const getSinglePost = (id : string) => {
-    fetch(`${api}/post/${id}`, {headers}).then(data => data.json());
+export const getSinglePost = (id : string) : any => {
+    return fetch(`${api}/post/${id}`, {headers}).then(data => data.json());
 };
 
 // votes on a post. option needs to be either 'upVote' or 'downVote'
 export const voteOnPost = (id : string, option : string) => {
-    fetch(`${api}/posts/${id}`, {
+    return fetch(`${api}/posts/${id}`, {
         headers: {
             ...headers,
             'Content-Type': 'application/json'
@@ -61,8 +61,8 @@ export const voteOnPost = (id : string, option : string) => {
     }).then(res => res.json());
 };
 
-export const editPost = (id : string, newContent : Object) => {
-    fetch(`${api}/posts/${id}`, {
+export const editPost = (id : string, newContent : Object) : any => {
+    return fetch(`${api}/posts/${id}`, {
         headers: {
             ...headers,
             'Content-Type': 'application/json'
@@ -72,18 +72,18 @@ export const editPost = (id : string, newContent : Object) => {
     }).then(res => res.json());
 };
 
-export const deletePost = (id : string) => {
-    fetch(`${api}/post/${id}`, {headers, method: 'DELETE'}).then(data => data.json());
+export const deletePost = (id : string) : any => {
+    return fetch(`${api}/post/${id}`, {headers, method: 'DELETE'}).then(data => data.json());
 };
 
 // gets all comments for one post
-export const getCommentsForPost = (id : string) => {
-    fetch(`${api}/${id}/comments`, {headers}).then(data => data.json());
+export const getCommentsForPost = (id : string) : any => {
+    return fetch(`${api}/${id}/comments`, {headers}).then(data => data.json());
 };
 
 // adds a comment to a post
-export const addCommentToPost = (commentDetails : Object) => {
-    fetch(`${api}/comments`, {
+export const addCommentToPost = (commentDetails : Object) : any => {
+    return fetch(`${api}/comments`, {
         headers: {
             ...headers,
             'Content-Type': 'application/json'
@@ -94,17 +94,17 @@ export const addCommentToPost = (commentDetails : Object) => {
 };
 
 // get one comment
-export const getComment = (id : string) => {
-    fetch(`${api}/comments/${id}`, {headers}).then(data => data.json());
+export const getComment = (id : string) : any => {
+    return fetch(`${api}/comments/${id}`, {headers}).then(data => data.json());
 };
 
-export const voteOnComment = (id : string) => {
-    fetch(`${api}/comments/${id}`, {headers, method: 'POST'}).then(data => data.json());
+export const voteOnComment = (id : string) : any => {
+    return fetch(`${api}/comments/${id}`, {headers, method: 'POST'}).then(data => data.json());
 };
 
 // edits a comment. refer to the API docs for what should go in newDetails
-export const editComment = (id : string, newDetails : Object) => {
-    fetch(`${api}/comments/${id}`, {
+export const editComment = (id : string, newDetails : Object) : any => {
+    return fetch(`${api}/comments/${id}`, {
         headers: {
             ...headers,
             'Content-Type': 'application/json'
@@ -114,6 +114,6 @@ export const editComment = (id : string, newDetails : Object) => {
     }).then(data => data.json());
 };
 
-export const deleteComment = (id : string) => {
-    fetch(`${api}/comments/${id}`, {headers, method: 'DELETE'}).then(data => data.json());
+export const deleteComment = (id : string) : any => {
+    return fetch(`${api}/comments/${id}`, {headers, method: 'DELETE'}).then(data => data.json());
 };

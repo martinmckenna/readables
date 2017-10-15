@@ -2,7 +2,7 @@
     "extends": ["tslint-react"],
     "rules": {
         "align": [
-            true,
+            false,
             "parameters",
             "arguments",
             "statements"
@@ -29,7 +29,7 @@
             "static-before-instance",
             "variables-before-functions"
         ],
-        "no-any": true,
+        "no-any": false,
         "no-arg": true,
         "no-bitwise": true,
         "no-console": [
@@ -48,8 +48,8 @@
         "no-duplicate-variable": true,
         "no-empty": true,
         "no-eval": true,
-        "no-shadowed-variable": true,
-        "no-string-literal": true,
+        "no-shadowed-variable": false,
+        "no-string-literal": false,
         "no-switch-case-fall-through": true,
         "no-trailing-whitespace": false,
         "no-unused-expression": true,
