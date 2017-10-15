@@ -100,7 +100,10 @@ export const getComment = (id : string) : any => {
 
 export const voteOnComment = (id : string, option : string) : any => {
     return fetch(`${api}/comments/${id}`, {
-        headers,
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
         method: 'POST',
         body: JSON.stringify({option: option})
     }).then(data => data.json());
