@@ -42,3 +42,13 @@ export function editComment(id : any, newCommentDetails : Object) : any {
             .catch((e : any) => `error: ${e}`);
     };
 }
+
+export function voteComment(id : any, option : string) : any {
+    return function (dispatch : any) {
+        console.log(option);
+        return api
+            .voteOnComment(id, option)
+            .then((data : Object) => dispatch({type: VOTE_COMMENT, id, data}))
+            .catch((e : any) => `error: ${e}`);
+    };
+}

@@ -98,8 +98,12 @@ export const getComment = (id : string) : any => {
     return fetch(`${api}/comments/${id}`, {headers}).then(data => data.json());
 };
 
-export const voteOnComment = (id : string) : any => {
-    return fetch(`${api}/comments/${id}`, {headers, method: 'POST'}).then(data => data.json());
+export const voteOnComment = (id : string, option : string) : any => {
+    return fetch(`${api}/comments/${id}`, {
+        headers,
+        method: 'POST',
+        body: JSON.stringify({option: option})
+    }).then(data => data.json());
 };
 
 // edits a comment. refer to the API docs for what should go in newDetails

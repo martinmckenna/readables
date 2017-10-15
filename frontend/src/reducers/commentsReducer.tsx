@@ -34,7 +34,12 @@ export default function posts(prevState : any = [], action : CommentBody) {
                 return eachComment;
             });
         case VOTE_COMMENT:
-            return prevState;
+            return prevState.map((eachComment : any) => {
+                if (eachComment.id === id) {
+                    eachComment = data;
+                }
+                return eachComment;
+            });
         case GET_COMMENT:
             return prevState;
         case GET_COMMENTS_FOR_POST:

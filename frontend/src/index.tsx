@@ -5,7 +5,7 @@ import registerServiceWorker from './registerServiceWorker';
 import {createStore, applyMiddleware} from 'redux';
 import reducer from './reducers/rootReducer';
 import {Provider} from 'react-redux';
-import {getCommentsForPost, editComment} from './actions/commentsAction';
+import {getCommentsForPost, voteComment} from './actions/commentsAction';
 import thunkMiddleware from 'redux-thunk';
 import {createLogger} from 'redux-logger';
 
@@ -19,10 +19,7 @@ const store = createStore(reducer, applyMiddleware(thunkMiddleware, loggerMiddle
 
 store
   .dispatch(getCommentsForPost('8xf0y6ziyjabvozdd253nd'))
-  .then(() => store.dispatch(editComment('894tuq4ut84ut8v4t8wun89g', {
-    timestamp: Date.now(),
-    body: 'Hi there. IM A NEWER COMMENT!'
-  })));
+  .then(() => store.dispatch(voteComment('894tuq4ut84ut8v4t8wun89g', 'downVote')));
 // .then(() => store.dispatch(deleteComment(0.038898733315715806))); .then(() =>
 // store.dispatch(addComment({id: randNum, timestamp: date, body: 'this a new
 // comment', author: 'marty', parentId: '111'})));
