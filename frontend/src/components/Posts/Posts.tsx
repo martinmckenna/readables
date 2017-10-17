@@ -10,21 +10,42 @@ any > {
             .props
             .boundGetPosts();
     }
+    sortBy = (field : any, reverse : any, primer : any) => {
+
+        let key = primer
+            ? function (x : any) {
+                return primer(x[field]);
+            }
+            : function (x : any) {
+                return x[field];
+            };
+
+        reverse = !reverse
+            ? 1
+            : -1;
+
+        return function (a : number, b : number) {
+            return a = key(a),
+            b = key(b),
+            reverse * (+ (a > b) - + (b > a));
+        };
+    }
     render() {
+        const sortedArray : any = this
+            .props
+            .posts
+            .sort(this.sortBy('voteScore', true, parseInt));
         return (
             <ul className="post-list">
                 <h2>Posts</h2>
-                {this
-                    .props
-                    .posts
-                    .map((eachPost : any) => {
-                        return (
-                            <li key={eachPost.id}>
-                                <h4>{eachPost.title}</h4>
-                                <span>{new Date(eachPost.timestamp).toDateString()}, {eachPost.author}, {eachPost.voteScore}</span>
-                            </li>
-                        );
-                    })}
+                {sortedArray.map((eachPost : any) => {
+                    return (
+                        <li key={eachPost.id}>
+                            <h4>{eachPost.title}</h4>
+                            <span>{new Date(eachPost.timestamp).toDateString()}, {eachPost.author}, {eachPost.voteScore}</span>
+                        </li>
+                    );
+                })}
             </ul>
         );
     }

@@ -7,14 +7,13 @@ import reducer from './reducers/rootReducer';
 import {Provider} from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 import {createLogger} from 'redux-logger';
-import {votePost} from './actions/postsAction';
 
 const loggerMiddleware = createLogger();
 
 const store = createStore(reducer, applyMiddleware(thunkMiddleware, loggerMiddleware));
 // const randNum = Math.random(); const date = Date.now(); store
 // .dispatch(getAllPosts())   .then(() =>
-store.dispatch(votePost('8xf0y6ziyjabvozdd253nd', 'downVote'));
+// store.dispatch(votePost('8xf0y6ziyjabvozdd253nd', 'downVote'));
 // store.dispatch(deletePost('8xf0y6ziyjabvozdd253nd')); 8xf0y6ziyjabvozdd253nd
 // store.dispatch(getCommentsForPost('8xf0y6ziyjabvozdd253nd')); .then(() =>
 // store.dispatch(voteComment('894tuq4ut84ut8v4t8wun89g', 'downVote')));
