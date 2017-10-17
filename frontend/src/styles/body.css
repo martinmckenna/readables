@@ -1,0 +1,18 @@
+html,
+body,
+ul,
+li,
+h4{
+    margin:0;
+    padding:0;
+}
+
+.homepage-wrapper{
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    /* Or do it all in one line with flex flow */
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+}

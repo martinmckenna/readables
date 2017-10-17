@@ -1,0 +1,28 @@
+.post-list{
+    width:45%;
+    list-style: none;
+    flex-grow:1;
+    margin:1em;
+}
+
+.post-list h2{
+    width:100%;
+}
+
+.post-list li{
+    padding:.5em;
+    margin:1em 0 1em 0;
+    background:yellow;
+}
+
+.post-list li:hover{
+    -webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -ms-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
+    -moz-transform: translateY(-3px);
+    -webkit-transform: translateY(-3px);
+    -o-transform: translateY(-3px);
+    -ms-transform: translateY(-3px);
+    transform: translateY(-3px);}

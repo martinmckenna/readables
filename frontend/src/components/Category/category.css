@@ -1,0 +1,41 @@
+.category-list{
+    width:45%;
+    list-style: none;
+    flex-grow:1;
+    margin:1em;
+    background:red;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    /* Or do it all in one line with flex flow */
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+}
+
+.category-list h2{
+    width:100%;
+}
+
+.category-list li{
+    padding:1em;
+    width:30%;
+    margin:.2em;
+    flex-grow:1;
+    background:yellow;
+    text-align: center;
+}
+
+.category-list li:hover{
+    -webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -ms-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
+    -moz-transform: translateY(-3px);
+    -webkit-transform: translateY(-3px);
+    -o-transform: translateY(-3px);
+    -ms-transform: translateY(-3px);
+    transform: translateY(-3px);}
