@@ -26,8 +26,8 @@
 .post-list li{
     padding:.5em;
     margin:1em 0 1em 0;
-    background:#3b96fb;
-    border: 3px solid #f7f7f7;
+    background:#f7f7f7;
+    border: 3px solid #3b96fb;
     position: relative;
 }
 
