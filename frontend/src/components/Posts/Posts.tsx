@@ -2,6 +2,7 @@ import * as React from 'react';
 import './posts.css';
 import {connect} from 'react-redux';
 import {getAllPosts} from '../../actions/postsAction';
+import {ChevronTop, ChevronBottom} from 'react-bytesize-icons';
 
 class Posts extends React.Component < any,
 any > {
@@ -10,7 +11,7 @@ any > {
             .props
             .boundGetPosts();
     }
-    sortBy = (field : any, reverse : any, primer : any) => {
+    sortBy = (field : string, reverse : any, primer : any) => {
 
         let key = primer
             ? function (x : any) {
@@ -41,8 +42,10 @@ any > {
                 {sortedArray.map((eachPost : any) => {
                     return (
                         <li key={eachPost.id}>
-                            <h4>{eachPost.title}</h4>
-                            <span>{new Date(eachPost.timestamp).toDateString()}, {eachPost.author}, {eachPost.voteScore}</span>
+                            <h3>{eachPost.title}</h3>
+                            <span><ChevronTop height={18} strokeWidth='10%' width={18}/>{eachPost.voteScore}<ChevronBottom strokeWidth='10%' height={18} width={18}/></span>
+                            <p>Posted on {new Date(eachPost.timestamp).toDateString()}</p>
+                            <p>by {eachPost.author}</p>
                         </li>
                     );
                 })}

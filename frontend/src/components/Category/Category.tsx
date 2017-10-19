@@ -11,7 +11,6 @@ any > {
             .boundGetCategories();
     }
     render() {
-        console.log(this.props);
         return (
             <ul className="category-list">
                 <h2>Categories</h2>

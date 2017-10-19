@@ -3,16 +3,6 @@
     list-style: none;
     flex-grow:1;
     margin:1em;
-    background:red;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-align-items: center;
-    align-items: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    /* Or do it all in one line with flex flow */
-    -webkit-flex-flow: row wrap;
-    flex-flow: row wrap;
 }
 
 .category-list h2{
@@ -21,14 +11,16 @@
 
 .category-list li{
     padding:1em;
-    width:30%;
-    margin:.2em;
+    width:90%;
+    margin-bottom:1em;
     flex-grow:1;
-    background:yellow;
+    background:#3b96fb;
+    border: 3px solid #f7f7f7;
     text-align: center;
 }
 
 .category-list li:hover{
+    background-color:hotpink;
     -webkit-transition: all .2s ease;
     -moz-transition: all .2s ease;
     -ms-transition: all .2s ease;
