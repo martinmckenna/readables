@@ -1,0 +1,20 @@
+.addPostForm input,
+.addPostForm select,
+.addPostForm textarea{
+    display:block;
+    width: 75%;
+    margin: 1em 0;
+}
+
+.addPostForm input[type="text"]{
+    padding:.5em;
+}
+
+.addPostForm textarea{
+    padding:1em;
+}
+
+.addPostForm select{
+    padding:1em;
+}
+
