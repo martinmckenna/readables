@@ -27,6 +27,8 @@ any > {
         });
     }
     handleSubmit = () => {
+        // form validation then finally form submission at the end. submit form with
+        // UUID
         if (this.state.selectError === true) {
             alert('fill out a category!');
         } else if (this.state.authorValue.trim() === '') {
@@ -36,7 +38,6 @@ any > {
         } else if (this.state.titleValue.trim() === '') {
             alert('fill out a title!');
         } else {
-            alert('passed!');
             this
                 .props
                 .boundAddPost({
