@@ -10,8 +10,6 @@ import {createLogger} from 'redux-logger';
 
 const loggerMiddleware = createLogger();
 
-// hello
-
 const store = createStore(reducer, applyMiddleware(thunkMiddleware, loggerMiddleware));
 // const randNum = Math.random(); const date = Date.now(); store
 // .dispatch(getAllPosts())   .then(() =>

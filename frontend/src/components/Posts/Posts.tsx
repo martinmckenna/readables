@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './posts.css';
 import {connect} from 'react-redux';
-import {getAllPosts} from '../../actions/postsAction';
+import {getAllPosts, votePost} from '../../actions/postsAction';
 import {ChevronTop, ChevronBottom} from 'react-bytesize-icons';
 
 class Posts extends React.Component < any,
@@ -39,11 +39,29 @@ any > {
         return (
             <ul className="post-list">
                 <h2>Posts</h2>
+                <div className="home-sort-by-wrapper">
+                    <label className="label-home-sort-by" htmlFor="home-sort-by">Sort By:</label>
+                    <select name="home-sort-by" id="home-sort-by">
+                        <option value="Hello">Hello</option>
+                    </select>
+                </div>
                 {sortedArray.map((eachPost : any) => {
                     return (
                         <li key={eachPost.id}>
                             <h3>{eachPost.title}</h3>
-                            <span><ChevronTop height={18} strokeWidth='10%' width={18}/>{eachPost.voteScore}<ChevronBottom strokeWidth='10%' height={18} width={18}/></span>
+                            <span>
+                                <a
+                                    className="voteIcon"
+                                    onClick={() => this.props.boundVotePost(eachPost.id, 'upVote')}>
+                                    <ChevronTop height={12} strokeWidth="20%" width={18}/>
+                                </a>
+                                {eachPost.voteScore}
+                                <a
+                                    className="voteIcon"
+                                    onClick={() => this.props.boundVotePost(eachPost.id, 'downVote')}>
+                                    <ChevronBottom height={12} strokeWidth="20%" width={18}/>
+                                </a>
+                            </span>
                             <p>Posted on {new Date(eachPost.timestamp).toDateString()}</p>
                             <p>by {eachPost.author}</p>
                         </li>
@@ -60,7 +78,8 @@ const mapStateToProps = (state : Object) => {
 
 const mapDispatchToProps = (dispatch : any) => {
     return {
-        boundGetPosts: () => dispatch(getAllPosts())
+        boundGetPosts: () => dispatch(getAllPosts()),
+        boundVotePost: (id : string, option : string) => dispatch(votePost(id, option))
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);

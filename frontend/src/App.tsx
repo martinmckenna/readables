@@ -21,7 +21,7 @@ class App extends React.Component {
     let styles : Object = {
       position: 'fixed',
       bottom: '5%',
-      right: '5%'
+      left: '5%'
     };
     return (
       <MuiThemeProvider>
@@ -34,8 +34,7 @@ class App extends React.Component {
               onClick={this.openModal}
               style={styles}
               label="Add Post"
-              secondary={true}
-            />
+              secondary={true}/>
           </div>
           <AddPost closeModal={this.closeModal} openState={this.state.modalOpen}/>
         </div>
