@@ -20,7 +20,12 @@ any > {
                     .map((eachCategory : any) => {
                         return (
                             <li key={eachCategory.name} className="eachCategory">
-                                {eachCategory.name}
+                                {eachCategory
+                                    .name
+                                    .charAt(0)
+                                    .toUpperCase() + eachCategory
+                                    .name
+                                    .slice(1)}
                             </li>
                         );
                     })}
