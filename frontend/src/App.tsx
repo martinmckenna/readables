@@ -21,7 +21,7 @@ class App extends React.Component {
     let styles : Object = {
       position: 'fixed',
       bottom: '5%',
-      left: '5%'
+      left: '3%'
     };
     return (
       <MuiThemeProvider>
