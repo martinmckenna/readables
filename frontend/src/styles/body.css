@@ -1,5 +1,5 @@
 html,
-body{
+body {
     background-color: #f4e6bc;
     position: relative;
 }
@@ -8,9 +8,9 @@ html,
 body,
 ul,
 li,
-h4{
-    margin:0;
-    padding:0;
+h4 {
+    margin: 0;
+    padding: 0;
 }
 
 h1,
@@ -18,18 +18,24 @@ h2,
 h3,
 h4,
 h5,
-h6{
+h6 {
     font-family: 'Raleway', Arial, sans-serif;
 }
 
 li,
 div,
 p,
-span{
+span {
     font-family: 'Libre Baskerville', serif;
 }
 
-.homepage-wrapper{
+.addPost-btn {
+    position: fixed;
+    left: 3%;
+    bottom: 5%;
+}
+
+.homepage-wrapper {
     display: -webkit-flex;
     display: flex;
     -webkit-justify-content: center;

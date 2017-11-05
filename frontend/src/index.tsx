@@ -19,9 +19,6 @@ import {createLogger} from 'redux-logger';
 import createHistory from 'history/createBrowserHistory';
 import {ConnectedRouter, routerMiddleware} from 'react-router-redux';
 
-// react-router
-import {Route} from 'react-router';
-
 // Create a browser history
 const history : any = createHistory();
 
@@ -36,8 +33,6 @@ const store = createStore(reducer, applyMiddleware(thunkMiddleware, loggerMiddle
 ReactDOM.render(
   <Provider store={store}>
   <ConnectedRouter history={history}>
-    <div>
-      <Route exact path="/" component={App}/>
-    </div>
+    <App/>
   </ConnectedRouter>
 </Provider>, document.getElementById('root')as HTMLElement);
