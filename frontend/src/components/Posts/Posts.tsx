@@ -13,6 +13,8 @@ any > {
         sortByReverse: true // whether or not we want to sort reverse order
     };
     componentDidMount() : void {
+        // TODO. Figure out a way to either call getPosts or getPostsInCategory based on
+        // whether we are in a category page
         this
             .props
             .boundGetPosts();
