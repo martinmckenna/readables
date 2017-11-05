@@ -7,7 +7,7 @@ import Posts from '../components/Posts/Posts';
 const Home = (props : any) => {
     return (
         <div className="homepage-wrapper">
-            <Category/>
+            <Category changeCategory={props.changeCategory}/>
             <Posts/>
         </div>
     );

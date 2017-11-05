@@ -13,7 +13,6 @@ any > {
         sortByReverse: true // whether or not we want to sort reverse order
     };
     componentDidMount() : void {
-        console.log(this.props);
         this
             .props
             .boundGetPosts();

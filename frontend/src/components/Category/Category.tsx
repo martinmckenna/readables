@@ -26,6 +26,9 @@ any > {
                                 this
                                     .props
                                     .dispatch(push(`/${eachCategory.name}`));
+                                this
+                                    .props
+                                    .changeCategory(eachCategory.name);
                             }}
                                 key={eachCategory.name}
                                 className="eachCategory">
@@ -43,7 +46,7 @@ any > {
     }
 }
 
-const mapStateToProps = (state : any) : any => {
+const mapStateToProps = (state : any, ownProps : any) : any => {
     return state;
 };
 
