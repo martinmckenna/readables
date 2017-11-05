@@ -11,7 +11,8 @@ import AddPost from './components/AddPost/AddPost';
 // material-ui components
 import RaisedButton from 'material-ui/RaisedButton';
 
-class App extends React.Component {
+class App extends React.Component < any,
+any > {
   state = {
     modalOpen: false
   };
@@ -22,6 +23,7 @@ class App extends React.Component {
     this.setState({modalOpen: true});
   }
   render() {
+    console.log(this.props);
     let styles : Object = {
       position: 'fixed',
       bottom: '5%',

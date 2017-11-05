@@ -22,6 +22,15 @@
     width: 100%;
 }
 
+.post-list h3 {
+    text-decoration: underline;
+}
+
+.post-list h3:hover {
+    cursor: pointer;
+    color: #2472d8;
+}
+
 .post-list span {
     position: absolute;
     bottom: 10%;
@@ -45,7 +54,6 @@
 }
 
 .post-list li:hover {
-    background-color: hotpink;
     -webkit-transition: all .2s ease;
     -moz-transition: all .2s ease;
     -ms-transition: all .2s ease;
@@ -65,5 +73,5 @@
 }
 
 .voteIcon:hover {
-    background-color: #f7f7f7;
+    background-color: #3b96fb;
 }

@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import {getAllPosts, votePost} from '../../actions/postsAction';
 import {ChevronTop, ChevronBottom} from 'react-bytesize-icons';
 
+import {push} from 'react-router-redux';
+
 class Posts extends React.Component < any,
 any > {
     state = {
@@ -65,10 +67,20 @@ any > {
                     .props
                     .posts
                     .sort(this.sortBy(this.state.sortBy, this.state.sortByReverse, parseInt))
+                    .filter((eachPost : any, index : number, originalArray : any) => {
+                        return (this.props.whichCategory)
+                            ? eachPost.category === this.props.whichCategory
+                            : originalArray;
+                    })
                     .map((eachPost : any) => {
                         return (
                             <li key={eachPost.id}>
-                                <h3>{eachPost.title}</h3>
+                                <h3
+                                    onClick={() => {
+                                    this
+                                        .props
+                                        .dispatch(push(`/${eachPost.category}/${eachPost.id}`));
+                                }}>{eachPost.title}</h3>
                                 <span>
                                     <a
                                         className="voteIcon"
@@ -92,12 +104,13 @@ any > {
     }
 }
 
-const mapStateToProps = (state : Object) => {
+const mapStateToProps = (state : Object, ownProps : any) => {
     return state;
 };
 
 const mapDispatchToProps = (dispatch : any) => {
     return {
+        dispatch,
         boundGetPosts: () => dispatch(getAllPosts()),
         boundVotePost: (id : string, option : string) => dispatch(votePost(id, option)) // option will either be 'upVote' or 'downVote'
     };

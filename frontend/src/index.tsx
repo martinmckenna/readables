@@ -31,6 +31,8 @@ const historyMiddleware = routerMiddleware(history);
 
 const store = createStore(reducer, applyMiddleware(thunkMiddleware, loggerMiddleware, historyMiddleware));
 
+// store.dispatch(push('/foo'));
+
 ReactDOM.render(
   <Provider store={store}>
   <ConnectedRouter history={history}>

@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {getCategories} from '../../actions/categoriesAction';
 import './category.css';
 
+import {push} from 'react-router-redux';
+
 class Category extends React.Component < any,
 any > {
     componentDidMount() : void {
@@ -19,7 +21,14 @@ any > {
                     .categories
                     .map((eachCategory : any) => {
                         return (
-                            <li key={eachCategory.name} className="eachCategory">
+                            <li
+                                onClick={() => {
+                                this
+                                    .props
+                                    .dispatch(push(`/${eachCategory.name}`));
+                            }}
+                                key={eachCategory.name}
+                                className="eachCategory">
                                 {eachCategory
                                     .name
                                     .charAt(0)
@@ -40,6 +49,7 @@ const mapStateToProps = (state : any) : any => {
 
 const mapDispatchToProps = (dispatch : any) : any => {
     return {
+        dispatch,
         boundGetCategories: () => dispatch(getCategories())
     };
 };
