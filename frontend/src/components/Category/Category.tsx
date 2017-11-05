@@ -26,9 +26,6 @@ any > {
                                 this
                                     .props
                                     .dispatch(push(`/${eachCategory.name}`));
-                                this
-                                    .props
-                                    .changeCategory(eachCategory.name);
                             }}
                                 key={eachCategory.name}
                                 className="eachCategory">

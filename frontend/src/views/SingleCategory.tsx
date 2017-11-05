@@ -5,15 +5,13 @@ import '../styles/body.css';
 import Posts from '../components/Posts/Posts';
 
 const SingleCategory = (props : any) => {
+    const category : string = location
+        .pathname
+        .replace('/', '');
     return (
         <div className="homepage-wrapper">
-            <h1 className="page-header">{props
-                    .whichCategory
-                    .charAt(0)
-                    .toUpperCase() + props
-                    .whichCategory
-                    .slice(1)}</h1>
-            <Posts whichCategory={props.whichCategory}/>
+            <h1 className="page-header">{category}</h1>
+            <Posts selectedCategory={category}/>
         </div>
     );
 };

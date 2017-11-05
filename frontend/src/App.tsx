@@ -20,21 +20,13 @@ import {Route, Switch} from 'react-router';
 class App extends React.Component < any,
 any > {
   state = {
-    modalOpen: false,
-    selectedCategory: '',
-    selectedPost: ''
+    modalOpen: false
   };
   closeModal = () : void => {
     this.setState({modalOpen: false});
   }
   openModal = () : void => {
     this.setState({modalOpen: true});
-  }
-  changeSelectedCategory = (newCategory : string) : void => {
-    this.setState({selectedCategory: newCategory});
-  }
-  changeSelectedPost = (newPost : string) : void => {
-    this.setState({selectedPost: newPost});
   }
   render() {
     console.log(this.state);
@@ -43,16 +35,8 @@ any > {
         <div className="App">
           <Header/>
           <Switch>
-            <Route
-              exact
-              path="/"
-              render={() => (<Home
-              changeCategory={this.changeSelectedCategory}
-              changePost={this.changeSelectedPost}/>)}/>
-            <Route
-              exact
-              path="/:category"
-              render={() => (<SingleCategory whichCategory={this.state.selectedCategory}/>)}/>
+            <Route exact path="/" render={() => (<Home/>)}/>
+            <Route exact path="/:category" render={() => (<SingleCategory/>)}/>
             <Route path="/:category/:postId" component={SinglePost}/>
           </Switch>
           <RaisedButton

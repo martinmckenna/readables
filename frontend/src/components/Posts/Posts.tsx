@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './posts.css';
 import {connect} from 'react-redux';
-import {getAllPosts, votePost} from '../../actions/postsAction';
+import {getAllPosts, votePost, getPostsInCategory} from '../../actions/postsAction';
 import {ChevronTop, ChevronBottom} from 'react-bytesize-icons';
 
 import {push} from 'react-router-redux';
@@ -15,9 +15,13 @@ any > {
     componentDidMount() : void {
         // TODO. Figure out a way to either call getPosts or getPostsInCategory based on
         // whether we are in a category page
-        this
-            .props
-            .boundGetPosts();
+        (!this.props.selectedCategory)
+            ? this
+                .props
+                .boundGetPosts()
+            : this
+                .props
+                .boundGetPostsInCategory(this.props.selectedCategory);
     }
     handleSelectChange = (e : any) : any => {
         let index = e.target.selectedIndex;
@@ -68,11 +72,6 @@ any > {
                     .props
                     .posts
                     .sort(this.sortBy(this.state.sortBy, this.state.sortByReverse, parseInt))
-                    .filter((eachPost : any, index : number, originalArray : any) => {
-                        return (this.props.whichCategory)
-                            ? eachPost.category === this.props.whichCategory
-                            : originalArray;
-                    })
                     .map((eachPost : any) => {
                         return (
                             <li key={eachPost.id}>
@@ -113,6 +112,7 @@ const mapDispatchToProps = (dispatch : any) => {
     return {
         dispatch,
         boundGetPosts: () => dispatch(getAllPosts()),
+        boundGetPostsInCategory: (category : string) => dispatch(getPostsInCategory(category)),
         boundVotePost: (id : string, option : string) => dispatch(votePost(id, option)) // option will either be 'upVote' or 'downVote'
     };
 };
