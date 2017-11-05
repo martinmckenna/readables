@@ -29,7 +29,7 @@ export function getAllPosts() : any {
     };
 }
 
-export function deletePost(id : any) : any {
+export function deletePost(id : string) : any {
     return function (dispatch : any) {
         return api
             .deletePost(id)
@@ -39,7 +39,7 @@ export function deletePost(id : any) : any {
 }
 
 // TODO: Change the id type to a string if the UUID ends up being a string
-export function editPost(id : any, newPostDetails : Object) : any {
+export function editPost(id : string, newPostDetails : Object) : any {
     return function (dispatch : any) {
         return api
             .editPost(id, newPostDetails)
@@ -48,7 +48,7 @@ export function editPost(id : any, newPostDetails : Object) : any {
     };
 }
 
-export function votePost(id : any, option : string) : any {
+export function votePost(id : string, option : string) : any {
     return function (dispatch : any) {
         return api
             .voteOnPost(id, option)
@@ -57,7 +57,7 @@ export function votePost(id : any, option : string) : any {
     };
 }
 
-export function getSinglePost(id : any) : any {
+export function getSinglePost(id : string) : any {
     return function (dispatch : any) {
         return api
             .getSinglePost(id)
@@ -66,7 +66,7 @@ export function getSinglePost(id : any) : any {
     };
 }
 
-export function getPostsInCategory(category : any) : any {
+export function getPostsInCategory(category : string) : any {
     return function (dispatch : any) {
         return api
             .getPostsInCategory(category)
