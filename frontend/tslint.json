@@ -20,6 +20,7 @@
         "interface-name": [true, "never-prefix"],
         "jsdoc-format": true,
         "jsx-alignment": false,
+        "jsx-boolean-value": false,
         "jsx-equals-spacing": false,
         "jsx-no-lambda": false,
         "jsx-no-multiline-js": false,

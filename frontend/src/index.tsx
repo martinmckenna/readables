@@ -1,26 +1,41 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+
+// import componenets
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+
+// import redux and react-redux bindings
 import {createStore, applyMiddleware} from 'redux';
-import reducer from './reducers/rootReducer';
 import {Provider} from 'react-redux';
+
+// import reducers
+import reducer from './reducers/rootReducer';
+
+// import redux middleware
 import thunkMiddleware from 'redux-thunk';
 import {createLogger} from 'redux-logger';
 
-const loggerMiddleware = createLogger();
+// import react-router and react-router-redux bindings
+import createHistory from 'history/createBrowserHistory';
+import {ConnectedRouter, routerMiddleware} from 'react-router-redux';
 
-const store = createStore(reducer, applyMiddleware(thunkMiddleware, loggerMiddleware));
-// const randNum = Math.random(); const date = Date.now(); store
-// .dispatch(getAllPosts())   .then(() =>
-// store.dispatch(votePost('8xf0y6ziyjabvozdd253nd', 'downVote'));
-// store.dispatch(deletePost('8xf0y6ziyjabvozdd253nd')); 8xf0y6ziyjabvozdd253nd
-// store.dispatch(getCommentsForPost('8xf0y6ziyjabvozdd253nd')); .then(() =>
-// store.dispatch(voteComment('894tuq4ut84ut8v4t8wun89g', 'downVote')));
-// .then(() => store.dispatch(deleteComment(0.038898733315715806))); .then(() =>
-// store.dispatch(addComment({id: randNum, timestamp: date, body: 'this a new
-// comment', author: 'marty', parentId: '111'})));
+// react-router
+import {Route} from 'react-router';
+
+// Create a browser history
+const history : any = createHistory();
+
+// declare middleware
+const loggerMiddleware = createLogger();
+const historyMiddleware = routerMiddleware(history);
+
+const store = createStore(reducer, applyMiddleware(thunkMiddleware, loggerMiddleware, historyMiddleware));
 
 ReactDOM.render(
-  <Provider store={store}><App/></Provider>, document.getElementById('root')as HTMLElement);
-registerServiceWorker();
+  <Provider store={store}>
+  <ConnectedRouter history={history}>
+    <div>
+      <Route exact path="/" component={App}/>
+    </div>
+  </ConnectedRouter>
+</Provider>, document.getElementById('root')as HTMLElement);

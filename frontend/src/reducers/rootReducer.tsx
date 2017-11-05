@@ -3,4 +3,7 @@ import categories from './categoriesReducer';
 import posts from './postsReducer';
 import comments from './commentsReducer';
 
-export default combineReducers({categories, posts, comments});
+// react-router-redux reducer
+import {routerReducer} from 'react-router-redux';
+
+export default combineReducers({categories, posts, comments, routerReducer});

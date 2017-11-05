@@ -1,11 +1,15 @@
 import * as React from 'react';
 import './styles/body.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+// import components
 import Category from './components/Category/Category';
 import Posts from './components/Posts/Posts';
 import Header from './components/Header/Header';
-import RaisedButton from 'material-ui/RaisedButton';
 import AddPost from './components/AddPost/AddPost';
+
+// material-ui components
+import RaisedButton from 'material-ui/RaisedButton';
 
 class App extends React.Component {
   state = {

@@ -8,16 +8,17 @@ class Posts extends React.Component < any,
 any > {
     state = {
         sortBy: 'voteScore',
-        sortByReverse: true
+        sortByReverse: true // whether or not we want to sort reverse order
     };
     componentDidMount() : void {
+        console.log(this.props);
         this
             .props
             .boundGetPosts();
     }
     handleSelectChange = (e : any) : any => {
         let index = e.target.selectedIndex;
-        let selectedElement = e.target.childNodes[index];
+        let selectedElement = e.target.childNodes[index]; // we want to get the 'data-reverse' attr of the selected <option>
         let reverse = JSON.parse(selectedElement.getAttribute('data-reverse')); // doing JSON parse because getAttribute is returning a string and not a boolean
         this.setState({sortBy: e.target.value, sortByReverse: reverse});
     }
@@ -42,7 +43,6 @@ any > {
         };
     }
     render() {
-        console.log(this.state);
         return (
             <ul className="post-list">
                 <h2>Posts</h2>
@@ -99,7 +99,7 @@ const mapStateToProps = (state : Object) => {
 const mapDispatchToProps = (dispatch : any) => {
     return {
         boundGetPosts: () => dispatch(getAllPosts()),
-        boundVotePost: (id : string, option : string) => dispatch(votePost(id, option))
+        boundVotePost: (id : string, option : string) => dispatch(votePost(id, option)) // option will either be 'upVote' or 'downVote'
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);
