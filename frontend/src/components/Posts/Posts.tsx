@@ -1,10 +1,15 @@
 import * as React from 'react';
 import './posts.css';
+
+// redux
 import {connect} from 'react-redux';
+
+// import actions
 import {getAllPosts, votePost, getPostsInCategory} from '../../actions/postsAction';
+
 import {ChevronTop, ChevronBottom} from 'react-bytesize-icons';
 
-import {push} from 'react-router-redux';
+import {push} from 'react-router-redux'; // function to update the current path
 
 class Posts extends React.Component < any,
 any > {
@@ -13,9 +18,7 @@ any > {
         sortByReverse: true // whether or not we want to sort reverse order
     };
     componentDidMount() : void {
-        // TODO. Figure out a way to either call getPosts or getPostsInCategory based on
-        // whether we are in a category page
-        (!this.props.selectedCategory)
+        (!this.props.selectedCategory) // if we are on a category page, we only want to render the posts in the given category
             ? this
                 .props
                 .boundGetPosts()

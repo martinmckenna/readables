@@ -13,7 +13,7 @@ export function addComment(commentDetails : Object) {
         return api
             .addCommentToPost(commentDetails)
             .then(() => dispatch({type: ADD_COMMENT, commentDetails}))
-            .catch((e : any) => `error: ${e}`);
+            .catch((e : any) => `error adding comment: ${e}`);
     };
 }
 export function getCommentsForPost(id : any) : any {
@@ -21,7 +21,7 @@ export function getCommentsForPost(id : any) : any {
         return api
             .getCommentsForPost(id)
             .then((data : any) => dispatch({type: GET_COMMENTS_FOR_POST, data}))
-            .catch((e : any) => `error: ${e}`);
+            .catch((e : any) => `error getting comments for this post: ${e}`);
     };
 }
 
@@ -30,7 +30,7 @@ export function deleteComment(id : any) : any {
         return api
             .deleteComment(id)
             .then((data : any) => dispatch({type: DELETE_COMMENT, id}))
-            .catch((e : any) => `error: ${e}`);
+            .catch((e : any) => `error deleting comment: ${e}`);
     };
 }
 
@@ -39,7 +39,7 @@ export function editComment(id : any, newCommentDetails : Object) : any {
         return api
             .editComment(id, newCommentDetails)
             .then((data : Object) => dispatch({type: EDIT_COMMENT, data, id}))
-            .catch((e : any) => `error: ${e}`);
+            .catch((e : any) => `error editing comment: ${e}`);
     };
 }
 
@@ -49,6 +49,6 @@ export function voteComment(id : any, option : string) : any {
         return api
             .voteOnComment(id, option)
             .then((data : Object) => dispatch({type: VOTE_COMMENT, id, data}))
-            .catch((e : any) => `error: ${e}`);
+            .catch((e : any) => `error voting on comment: ${e}`);
     };
 }

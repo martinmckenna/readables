@@ -16,7 +16,7 @@ export function addPost(postDetails : Object) {
         return api
             .addPost(postDetails)
             .then(() => dispatch({type: ADD_POST, postDetails}))
-            .catch((e : any) => `error: ${e}`);
+            .catch((e : any) => `Error adding Post: ${e}`);
     };
 }
 
@@ -25,7 +25,7 @@ export function getAllPosts() : any {
         return api
             .getAllPosts()
             .then((data : any) => dispatch({type: GET_POSTS, data}))
-            .catch((e : any) => `error: ${e}`);
+            .catch((e : any) => `Error Getting Posts: ${e}`);
     };
 }
 
@@ -34,17 +34,16 @@ export function deletePost(id : string) : any {
         return api
             .deletePost(id)
             .then((data : any) => dispatch({type: DELETE_POST, id}))
-            .catch((e : any) => `error: ${e}`);
+            .catch((e : any) => `Error deleting post: ${e}`);
     };
 }
 
-// TODO: Change the id type to a string if the UUID ends up being a string
 export function editPost(id : string, newPostDetails : Object) : any {
     return function (dispatch : any) {
         return api
             .editPost(id, newPostDetails)
             .then((data : Object) => dispatch({type: EDIT_POST, id, data}))
-            .catch((e : any) => `error: ${e}`);
+            .catch((e : any) => `Error editign post: ${e}`);
     };
 }
 
@@ -53,7 +52,7 @@ export function votePost(id : string, option : string) : any {
         return api
             .voteOnPost(id, option)
             .then((data : Object) => dispatch({type: VOTE_POST, id, data}))
-            .catch((e : any) => `error: ${e}`);
+            .catch((e : any) => `Error voting on post: ${e}`);
     };
 }
 
@@ -62,7 +61,7 @@ export function getSinglePost(id : string) : any {
         return api
             .getSinglePost(id)
             .then((data : Object) => dispatch({type: GET_SINGLE_POST, id, data}))
-            .catch((e : any) => `error: ${e}`);
+            .catch((e : any) => `Error getting this post: ${e}`);
     };
 }
 
@@ -71,6 +70,6 @@ export function getPostsInCategory(category : string) : any {
         return api
             .getPostsInCategory(category)
             .then((data : Object) => dispatch({type: GET_POSTS_IN_CATEGORY, data}))
-            .catch((e : any) => `error: ${e}`);
+            .catch((e : any) => `Error getting the posts: ${e}`);
     };
 }

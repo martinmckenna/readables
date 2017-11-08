@@ -8,6 +8,6 @@ export function getCategories() {
         return api
             .getCategories()
             .then((data : any) => dispatch({type: GET_CATEGORIES, data}))
-            .catch((e : any) => `error ${e}`);
+            .catch((e : any) => `Error getting categories ${e}`);
     };
 }
