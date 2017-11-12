@@ -19,8 +19,12 @@ any > {
         console.log(this.props);
         return (
             <div className="singlepost-wrapper">
-                <h1>{this.props.posts[0].title}</h1>
-                <div>{this.props.posts[0].body}</div>
+                {(this.props.posts.length < 1)
+                    ? <div>Loading...</div>
+                    : <div>
+                        <h1>{this.props.posts[0].title}</h1>
+                        <div>{this.props.posts[0].body}</div>
+                    </div>}
             </div>
         );
     }
