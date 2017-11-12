@@ -5,7 +5,7 @@ interface CategoryBody {
     type : string;
 }
 
-export default function posts(prevState : any = [], action : CategoryBody) {
+export default function categories(prevState : any = [], action : CategoryBody) {
     const {data} = action;
 
     switch (action.type) {
