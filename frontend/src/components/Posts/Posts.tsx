@@ -1,10 +1,15 @@
 import * as React from 'react';
 import './posts.css';
+
+// redux
 import {connect} from 'react-redux';
-import {getAllPosts, votePost} from '../../actions/postsAction';
+
+// actions
+import {votePost} from '../../actions/postsAction';
+
 import {ChevronTop, ChevronBottom} from 'react-bytesize-icons';
 
-import {push} from 'react-router-redux';
+import {push} from 'react-router-redux'; // function to update the current path
 
 class Posts extends React.Component < any,
 any > {
@@ -12,12 +17,6 @@ any > {
         sortBy: 'voteScore',
         sortByReverse: true // whether or not we want to sort reverse order
     };
-    componentDidMount() : void {
-        console.log(this.props);
-        this
-            .props
-            .boundGetPosts();
-    }
     handleSelectChange = (e : any) : any => {
         let index = e.target.selectedIndex;
         let selectedElement = e.target.childNodes[index]; // we want to get the 'data-reverse' attr of the selected <option>
@@ -67,11 +66,6 @@ any > {
                     .props
                     .posts
                     .sort(this.sortBy(this.state.sortBy, this.state.sortByReverse, parseInt))
-                    .filter((eachPost : any, index : number, originalArray : any) => {
-                        return (this.props.whichCategory)
-                            ? eachPost.category === this.props.whichCategory
-                            : originalArray;
-                    })
                     .map((eachPost : any) => {
                         return (
                             <li key={eachPost.id}>
@@ -108,11 +102,12 @@ const mapStateToProps = (state : Object, ownProps : any) => {
     return state;
 };
 
-const mapDispatchToProps = (dispatch : any) => {
+const mapDispatchToProps = (dispatch : any) : any => {
     return {
         dispatch,
-        boundGetPosts: () => dispatch(getAllPosts()),
         boundVotePost: (id : string, option : string) => dispatch(votePost(id, option)) // option will either be 'upVote' or 'downVote'
+
     };
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);

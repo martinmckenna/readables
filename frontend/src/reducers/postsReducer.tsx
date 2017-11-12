@@ -14,9 +14,9 @@ interface PostBody {
     data : any;
     id : any;
 }
-// reducers take the previous state and the action as args then returns the new
-// state. never mutate state. Just make a copy and return the copy. please note
-// that concat() is a non-mutating method
+// reducers take the previous state and the action as parameters then returns
+// the new state. never mutate state. Just make a copy and return the copy.
+// please note that concat() is a non-mutating method
 export default function posts(prevState : any = [], action : PostBody) {
     const {postDetails, id, data} = action;
 
@@ -40,7 +40,7 @@ export default function posts(prevState : any = [], action : PostBody) {
                 return eachPost;
             });
         case GET_SINGLE_POST:
-            return data;
+            return [data];
         case GET_POSTS:
             return data;
         case GET_POSTS_IN_CATEGORY:

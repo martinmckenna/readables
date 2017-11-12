@@ -12,9 +12,8 @@ import {Provider} from 'react-redux';
 import reducer from './reducers/rootReducer';
 
 // import redux middleware
-import thunkMiddleware from 'redux-thunk';
-import {createLogger} from 'redux-logger';
-
+import thunkMiddleware from 'redux-thunk'; // thunk middleware lets us do async functions inside action creators
+// import {createLogger} from 'redux-logger'; // logs each time state updates
 // import react-router and react-router-redux bindings
 import createHistory from 'history/createBrowserHistory';
 import {ConnectedRouter, routerMiddleware} from 'react-router-redux';
@@ -22,13 +21,14 @@ import {ConnectedRouter, routerMiddleware} from 'react-router-redux';
 // Create a browser history
 const history : any = createHistory();
 
-// declare middleware
-const loggerMiddleware = createLogger();
+// declare middleware const loggerMiddleware = createLogger();
 const historyMiddleware = routerMiddleware(history);
 
-const store = createStore(reducer, applyMiddleware(thunkMiddleware, loggerMiddleware, historyMiddleware));
+const store = createStore(reducer, applyMiddleware(thunkMiddleware, historyMiddleware));
 
 // store.dispatch(push('/foo'));
+
+console.log(store.getState());
 
 ReactDOM.render(
   <Provider store={store}>

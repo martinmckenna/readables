@@ -44,3 +44,8 @@ span {
     -webkit-flex-flow: row wrap;
     flex-flow: row wrap;
 }
+
+.page-header {
+    width: 100%;
+    text-align: center;
+}

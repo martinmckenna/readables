@@ -14,7 +14,7 @@ interface CommentBody {
     id : any;
 }
 
-export default function posts(prevState : any = [], action : CommentBody) {
+export default function comments(prevState : any = [], action : CommentBody) {
     const {commentDetails, data, id} = action;
 
     switch (action.type) {

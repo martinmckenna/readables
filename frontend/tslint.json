@@ -24,6 +24,7 @@
         "jsx-equals-spacing": false,
         "jsx-no-lambda": false,
         "jsx-no-multiline-js": false,
+        "jsx-wrap-multiline": false,
         "label-position": true,
         "max-line-length": [true, 160],
         "member-ordering": [

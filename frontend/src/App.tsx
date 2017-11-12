@@ -5,13 +5,17 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 // import components
 import Header from './components/Header/Header';
 import AddPost from './components/AddPost/AddPost';
+
+// import views
 import Home from './views/Home';
+import SinglePost from './views/SinglePost';
+import SingleCategory from './views/SingleCategory';
 
 // material-ui components
 import RaisedButton from 'material-ui/RaisedButton';
 
 // react-router
-import {Route} from 'react-router';
+import {Route, Switch} from 'react-router';
 
 class App extends React.Component < any,
 any > {
@@ -29,7 +33,11 @@ any > {
       <MuiThemeProvider>
         <div className="App">
           <Header/>
-          <Route exact path="/" component={Home}/>
+          <Switch>
+            <Route exact path="/" render={() => (<Home/>)}/>
+            <Route exact path="/:category" render={() => (<SingleCategory/>)}/>
+            <Route path="/:category/:postId" component={SinglePost}/>
+          </Switch>
           <RaisedButton
             onClick={this.openModal}
             className="addPost-btn"
