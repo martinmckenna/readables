@@ -4,8 +4,8 @@ import './posts.css';
 // redux
 import {connect} from 'react-redux';
 
-// import actions
-import {getAllPosts, votePost, getPostsInCategory} from '../../actions/postsAction';
+// actions
+import {votePost} from '../../actions/postsAction';
 
 import {ChevronTop, ChevronBottom} from 'react-bytesize-icons';
 
@@ -17,15 +17,6 @@ any > {
         sortBy: 'voteScore',
         sortByReverse: true // whether or not we want to sort reverse order
     };
-    componentDidMount() : void {
-        (!this.props.selectedCategory) // if we are on a category page, we only want to render the posts in the given category
-            ? this
-                .props
-                .boundGetPosts()
-            : this
-                .props
-                .boundGetPostsInCategory(this.props.selectedCategory);
-    }
     handleSelectChange = (e : any) : any => {
         let index = e.target.selectedIndex;
         let selectedElement = e.target.childNodes[index]; // we want to get the 'data-reverse' attr of the selected <option>
@@ -111,12 +102,12 @@ const mapStateToProps = (state : Object, ownProps : any) => {
     return state;
 };
 
-const mapDispatchToProps = (dispatch : any) => {
+const mapDispatchToProps = (dispatch : any) : any => {
     return {
         dispatch,
-        boundGetPosts: () => dispatch(getAllPosts()),
-        boundGetPostsInCategory: (category : string) => dispatch(getPostsInCategory(category)),
         boundVotePost: (id : string, option : string) => dispatch(votePost(id, option)) // option will either be 'upVote' or 'downVote'
+
     };
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);

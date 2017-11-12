@@ -1,19 +1,49 @@
 import * as React from 'react';
-import '../styles/body.css';
+
+import {connect} from 'react-redux';
+import {getCategories} from '../actions/categoriesAction';
+import {getPostsInCategory} from '../actions/postsAction';
 
 // import components
 import Posts from '../components/Posts/Posts';
 
-const SingleCategory = (props : any) => {
-    const category : string = location
+class SingleCategory extends React.Component < any,
+any > {
+    route = this
+        .props
+        .routerReducer
+        .location
         .pathname
         .replace('/', '');
-    return (
-        <div className="homepage-wrapper">
-            <h1 className="page-header">{category}</h1>
-            <Posts selectedCategory={category}/>
-        </div>
-    );
+    componentDidMount() {
+        this
+            .props
+            .boundGetCategories();
+        this
+            .props
+            .boundGetPostsInCategory(this.route);
+    }
+    render() {
+        return (
+            <div className="homepage-wrapper">
+                <h1 className="page-header">{this.route}</h1>
+                <Posts/>
+            </div>
+        );
+    }
+
+}
+
+const mapStateToProps = (state : any, ownProps : any) : any => {
+    return state;
 };
 
-export default SingleCategory;
+const mapDispatchToProps = (dispatch : any) : any => {
+    return {
+        dispatch,
+        boundGetPostsInCategory: (category : string) => dispatch(getPostsInCategory(category)),
+        boundGetCategories: () => dispatch(getCategories())
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SingleCategory);

@@ -29,7 +29,6 @@ any > {
     this.setState({modalOpen: true});
   }
   render() {
-    console.log(this.state);
     return (
       <MuiThemeProvider>
         <div className="App">

@@ -40,7 +40,7 @@ export default function posts(prevState : any = [], action : PostBody) {
                 return eachPost;
             });
         case GET_SINGLE_POST:
-            return data;
+            return [data];
         case GET_POSTS:
             return data;
         case GET_POSTS_IN_CATEGORY:
