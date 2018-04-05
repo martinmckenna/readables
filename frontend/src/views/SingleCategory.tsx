@@ -9,6 +9,9 @@ import Posts from '../components/Posts/Posts';
 
 class SingleCategory extends React.Component < any,
 any > {
+    state = {
+        loading: true
+    };
     route = this
         .props
         .routerReducer
@@ -21,13 +24,18 @@ any > {
             .boundGetCategories();
         this
             .props
-            .boundGetPostsInCategory(this.route);
+            .boundGetPostsInCategory(this.route)
+            .then(() => {
+                this.setState({loading: false});
+            });
     }
     render() {
         return (
             <div className="homepage-wrapper">
                 <h1 className="page-header">{this.route}</h1>
-                <Posts/>
+                {(this.state.loading)
+                    ? <p>Loading...</p>
+                    : <Posts/>}
             </div>
         );
     }

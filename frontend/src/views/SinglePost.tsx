@@ -1,5 +1,8 @@
 import * as React from 'react';
 
+// material-ui components
+import RaisedButton from 'material-ui/RaisedButton';
+
 // import components
 import {connect} from 'react-redux';
 import {getCategories} from '../actions/categoriesAction';
@@ -7,10 +10,16 @@ import {getSinglePost} from '../actions/postsAction';
 
 class SinglePost extends React.Component < any,
 any > {
+    state = {
+        loading: true
+    };
     componentDidMount() {
         this
             .props
-            .boundGetSinglePost(this.props.match.params.postId);
+            .boundGetSinglePost(this.props.match.params.postId)
+            .then(() => {
+                this.setState({loading: false});
+            });
         this
             .props
             .boundGetCategories();
@@ -19,10 +28,14 @@ any > {
         console.log(this.props);
         return (
             <div className="singlepost-wrapper">
-                {(this.props.posts.length < 1)
-                    ? <div>Loading...</div>
+                {(this.state.loading)
+                    ? <p>Loading...</p>
                     : <div>
                         <h1>{this.props.posts[0].title}</h1>
+                        <p>Posted on {new Date(this.props.posts[0].timestamp).toDateString()}</p>
+                        <p>By {this.props.posts[0].author}</p>
+                        <RaisedButton label="Edit"/>
+                        <RaisedButton label="Delete"/>
                         <div>{this.props.posts[0].body}</div>
                     </div>}
             </div>
